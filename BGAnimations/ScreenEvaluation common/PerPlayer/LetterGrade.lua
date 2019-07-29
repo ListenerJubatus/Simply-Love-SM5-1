@@ -12,7 +12,9 @@ if title == "D" then grade = "Grade_Tier99" end
 local t = Def.ActorFrame{}
 
 t[#t+1] = LoadActor(THEME:GetPathG("", "_grades/"..grade..".lua"), playerStats)..{
-	InitCommand=cmd(xy, 70, _screen.cy-134),
+	InitCommand=function(self)
+		self:xy(70,_screen.cy-134)
+	end,
 	OnCommand=function(self)
 		self:zoom(0.4)
 		if pn == PLAYER_1 then

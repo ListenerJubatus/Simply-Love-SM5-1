@@ -18,7 +18,7 @@ if SL.Global.GameMode == "Casual" then return end
 local player = nil
 
 return Def.Sprite{
-	InitCommand=cmd(draworder, 200),
+	InitCommand=function(self) self:draworder(200) end,
 
 	-- This old-school code is defined in Metrics.ini under [ScreenEvaluation]
 	-- (Using a lua-based InputCallback would also have worked here.)
