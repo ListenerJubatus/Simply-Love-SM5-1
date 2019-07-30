@@ -6,7 +6,7 @@ local text_table, marquee_index
 
 return Def.ActorFrame{
 	Name="StepArtistAF_" .. pn,
-	InitCommand=function(self) self:draworder(1) end;
+	InitCommand=function(self) self:draworder(1) end,
 
 	-- song and course changes
 	OnCommand=function(self) self:queuecommand("StepsHaveChanged") end;
@@ -51,8 +51,8 @@ return Def.ActorFrame{
 	Def.Quad{
 		Name="BackgroundQuad",
 		InitCommand=function(self)
-			self:zoomto(175, _screen.h/28):x(113):diffuse(DifficultyIndexColor(1) ) 
-		end;
+			self:zoomto(175, _screen.h/28):x(113):diffuse(DifficultyIndexColor(1) )
+		end,
 		StepsHaveChangedCommand=function(self)
 			local StepsOrTrail = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentTrail(player) or GAMESTATE:GetCurrentSteps(player)
 
@@ -78,7 +78,7 @@ return Def.ActorFrame{
 		Font="_miso",
 		InitCommand=function(self)
 			self:diffuse(color("#1e282f")):horizalign(left):x(75):maxwidth(115)
-		end;
+		end,
 		StepsHaveChangedCommand=function(self)
 
 			local SongOrCourse = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentCourse() or GAMESTATE:GetCurrentSong()
