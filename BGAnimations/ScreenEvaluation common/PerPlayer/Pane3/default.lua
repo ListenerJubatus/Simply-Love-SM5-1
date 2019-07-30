@@ -101,23 +101,29 @@ if highscores then
 
 		row[#row+1] = LoadFont("_miso")..{
 			Text=s..". ",
-			InitCommand=cmd(horizalign,right; xy, -120, (s-(lower-1))*row_height )
+			InitCommand=function(self)
+				self:horizalign(right):xy(-120, (s-(lower-1))*row_height)
+			end;
 		}
 
 		row[#row+1] = LoadFont("_miso")..{
 			Text=name,
-			InitCommand=cmd(horizalign,left; xy, -110, (s-(lower-1))*row_height )
+			InitCommand=function(self)
+				self:horizalign(left):xy(-110, (s-(lower-1))*row_height)
+			end;
 		}
 
 		row[#row+1] = LoadFont("_miso")..{
 			Text=score,
-			InitCommand=cmd(horizalign,right; xy, 24, (s-(lower-1))*row_height )
-		}
+			InitCommand=function(self)
+				self:horizalign(right):xy(24, (s-(lower-1))*row_height)
+			end;		}
 
 		row[#row+1] = LoadFont("_miso")..{
 			Text=date,
-			InitCommand=cmd(horizalign,left; xy, 50, (s-(lower-1))*row_height )
-		}
+			InitCommand=function(self)
+				self:horizalign(left):xy(50, (s-(lower-1))*row_height)
+			end;		}
 
 		pane[#pane+1] = row
 	end
