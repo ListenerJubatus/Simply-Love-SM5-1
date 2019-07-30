@@ -68,7 +68,10 @@ return Def.ActorFrame{
 
 		LoadFont("_miso") .. {
 			Text=THEME:GetString("ScreenSelectProfile", "PressStartToJoin"),
-			InitCommand=cmd(diffuseshift;effectcolor1,Color('White');effectcolor2,color("0.5,0.5,0.5");diffusealpha,0;maxwidth,180),
+			InitCommand=function(self)
+				self:diffuseshift():effectcolor1(Color('White')):effectcolor2(color("0.5,0.5,0.5"))
+				self:diffusealpha(0):maxwidth(180)
+			end;
 			OnCommand=function(self) self:sleep(0.3):linear(0.1):diffusealpha(1) end,
 			OffCommand=function(self) self:linear(0.1):diffusealpha(0) end
 		},
@@ -89,7 +92,9 @@ return Def.ActorFrame{
 		Def.ActorScroller{
 			Name='Scroller',
 			NumItemsToDraw=7,
-			InitCommand=cmd(x,-56; SetFastCatchup,true; SetSecondsPerItem,0.15; diffusealpha,0; SetMask, 400,60),
+			InitCommand=function(self)
+				self:x(-56):SetFastCatchup(true):SetSecondsPerItem(0.15):diffusealpha(0):SetMask(400,60)
+			end,
 			OnCommand=function(self) self:sleep(0.3):linear(0.1):diffusealpha(1) end,
 			TransformFunction=function(self, offset, itemIndex, numItems)
 				self:y(math.floor(offset*row_height))
@@ -206,6 +211,8 @@ return Def.ActorFrame{
 
 	LoadFont("_miso")..{
 		Name='SelectedProfileText',
-		InitCommand=cmd(y,160; zoom, 1.35; shadowlength, ThemePrefs.Get("RainbowMode") and 0.5 or 0)
+		InitCommand=function(self)
+			self:y(160):zoom(1.35):shadowlength(ThemePrefs.Get("RainbowMode") and 0.5 or 0)
+		end;
 	}
 }

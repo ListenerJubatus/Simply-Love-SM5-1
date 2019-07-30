@@ -1,4 +1,4 @@
 return Def.Quad{
-	InitCommand=cmd(FullScreen;diffuse,color("#ffffff00")),
-	OnCommand=cmd(decelerate,1; diffusealpha, 1)
+	InitCommand=function(self) self:FullScreen():diffuse(color("#ffffff00")) end;
+	OnCommand=function(self) self:decelerate(1):diffusealpha(1) end;
 }
