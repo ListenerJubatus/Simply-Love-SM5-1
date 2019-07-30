@@ -89,9 +89,13 @@ local Players = GAMESTATE:GetHumanPlayers()
 local SpeedModItems = {}
 
 local t = Def.ActorFrame{
-	InitCommand=cmd(xy,_screen.cx,0),
-	OnCommand=cmd(diffusealpha,0; linear,0.2;diffusealpha,1; queuecommand,"Capture"),
-	OffCommand=cmd(linear,0.2; diffusealpha,0),
+	InitCommand=function(self) 
+		self:xy(_screen.cx,0)
+	end;
+	OnCommand=function(self) 
+		self:diffusealpha(0):linear(0.2):diffusealpha(1):queuecommand("Capture")
+	end;
+	OffCommand=function(self) self:linear(0.2):diffusealpha(0) end;
 	CaptureCommand=function(self)
 
 		local ScreenOptions = SCREENMAN:GetTopScreen()
@@ -255,7 +259,7 @@ for player in ivalues(Players) do
 			self:x(player==PLAYER_1 and -100 or 150)
 			self:shadowlength(0.55)
 		end,
-		OnCommand=cmd(linear,0.4;diffusealpha,1)
+		OnCommand=function(self) self:linear(0.4):diffusealpha(1) end;
 	}
 
 
@@ -308,7 +312,7 @@ for player in ivalues(Players) do
 				SpeedModTitle:settext( THEME:GetString("OptionTitles", "SpeedMod") .. " (" .. bpms .. ")" )
 			end
 		end,
-		MusicRateChangedMessageCommand=cmd(playcommand,"Set")
+		MusicRateChangedMessageCommand=function(self) self:playcommand("Set") end;
 	}
 end
 

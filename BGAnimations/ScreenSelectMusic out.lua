@@ -8,7 +8,7 @@ return Def.ActorFrame{
 
 	LoadFont("_wendy small")..{
 		Text=THEME:GetString("ScreenSelectMusic","Press Start for Options"),
-		InitCommand=cmd(Center; zoom,0.75 ),
+		InitCommand=function(self) self:Center():zoom(0.75) end;
 		OnCommand=cmd(visible, false),
 		ShowPressStartForOptionsCommand=cmd(visible,true;),
 		ShowEnteringOptionsCommand=cmd(linear,0.125; diffusealpha,0; queuecommand, "NewText"),
